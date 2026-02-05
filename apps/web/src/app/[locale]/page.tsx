@@ -1,76 +1,56 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
-import { useTranslations } from "next-intl";
+import { getTranslations } from 'next-intl/server';
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+interface Unit {
+  id: number;
+  name: string;
+  address: string;
+  phone: string;
+}
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+// Function to fetch data from the backend
+async function getUnits(): Promise<Unit[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/units`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch units');
+  }
+
+  return res.json();
+}
+
+export default async function HomePage() {
+  const t = await getTranslations('HomePage');
+  const units = await getUnits();
 
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  const tHome = useTranslations('HomePage');
-
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <h1 className={styles.title}>{tHome('title')}</h1>
-        <h2 className={styles.description}>{tHome('subtitle')}</h2>
-        
-        <Button appName="web" className={styles.secondary}>
-          {tHome('cta')}
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
-    </div>
+    <main style={{ padding: '2rem' }}>
+      <h1>{t('title')}</h1>
+      
+      <div style={{ display: 'grid', gap: '1rem', marginTop: '2rem' }}>
+        {units.length === 0 ? (
+          <p>Nenhuma unidade encontrada. Execute /seed-units no backend.</p>
+        ) : (
+          units.map((unit) => (
+            <div 
+              key={unit.id} 
+              style={{ 
+                border: '1px solid #ccc', 
+                padding: '1rem', 
+                borderRadius: '8px' 
+              }}
+            >
+              <h3>{unit.name}</h3>
+              <p>{unit.address}</p>
+              <p>📞 {unit.phone}</p>
+            </div>
+          ))
+        )}
+      </div>
+    </main>
   );
 }

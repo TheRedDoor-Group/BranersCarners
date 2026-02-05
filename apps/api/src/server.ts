@@ -14,6 +14,18 @@ app.get("/", (req, res) => {
     res.json({ message: "API is running!" });
 });
 
+// Route to fetch all units
+app.get("/units", async (req, res) => {
+    try {
+        const unitRepo = AppDataSource.getRepository(Unit);
+        const units = await unitRepo.find();
+        res.json(units);
+    } catch (error) {
+        console.error("Error fetching units:", error);
+        res.status(500).json({ message: "Error fetching units" });
+    }
+})
+
 // Temporary route to create a unit (for testing purposes)
 app.post("/seed-units", async (req, res) => {
     const unitRepo = AppDataSource.getRepository(Unit);
