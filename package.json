@@ -10,6 +10,8 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
@@ -21,7 +23,11 @@
     "node": ">=18"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,json,md}": [
+    "{apps,packages}/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{ts,tsx,js,jsx,md,json}": [
       "prettier --write"
     ]
   }

@@ -1,0 +1,5 @@
+# insure that the project can build before pushing
+pnpm turbo run build
+
+# Dedicated space for testing, it can run separately if needed
+# pnpm turbo run test
