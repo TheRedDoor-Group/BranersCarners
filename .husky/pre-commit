@@ -1,0 +1,7 @@
+# .husky/pre-commit
+
+# Run the formatting only on modified files
+pnpm exec lint-staged
+
+# Run type verification across the entire project using turbo cache
+pnpm turbo run check-types
