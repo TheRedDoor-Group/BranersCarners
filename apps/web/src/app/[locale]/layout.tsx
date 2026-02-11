@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import LenisScrollProvider from "./providers/lenis-provider";
 import { Geist, Geist_Mono } from "next/font/google";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,7 +31,7 @@ export default async function RootLayout({
   const { locale } = await params;
 
   // if the locale is not valid, return 404
-  if (!['pt', 'en'].includes(locale)) {
+  if (!["pt", "en"].includes(locale)) {
     notFound();
   }
 
@@ -41,7 +42,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <LenisScrollProvider>{children}</LenisScrollProvider>
         </NextIntlClientProvider>
       </body>
     </html>
