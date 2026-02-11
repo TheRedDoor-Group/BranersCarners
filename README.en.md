@@ -1,89 +1,126 @@
-[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](README.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](README.en.md)
 
-# Braners Carners
+# BranersCarners
 
-This is a monorepo project managed with [Turborepo](https://turbo.build/repo) and [pnpm](https://pnpm.io).
+This is a modern monorepo project using **TurboRepo** for package and application management. The project integrates a **Next.js 16** frontend with internationalization, an **Express** API with **TypeORM**, and infrastructure via **Docker**.
 
-## Project Structure
+## 🚀 Technologies
 
-- **apps/web**: Frontend Application (Next.js 16 + next-intl).
-- **apps/api**: Backend Application (Express + TypeORM + PostgreSQL).
-- **packages/ui**: Shared UI Components Library.
-- **packages/eslint-config**: Shared linting configurations.
-- **packages/typescript-config**: Shared TypeScript configurations.
+- **Monorepo:** [TurboRepo](https://turbo.build/)
+- **Frontend:** [Next.js 16](https://nextjs.org/), [next-intl](https://next-intl-docs.vercel.app/), [SASS](https://sass-lang.com/)
+- **Backend:** [Express](https://expressjs.com/), [TypeORM](https://typeorm.io/), [PostgreSQL](https://www.postgresql.org/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Code Quality:** [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Husky](https://typicode.github.io/husky/), [Commitlint](https://commitlint.js.org/)
+- **Infrastructure:** [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
 
-## Prerequisites
+## 📂 Project Structure
 
-Make sure you have installed on your machine:
+- **apps/**
+  - `web`: Frontend Application (Next.js 16).
+  - `api`: Backend API (Express + TypeORM).
+- **packages/**
+  - `ui`: Shared UI components library.
+  - `eslint-config`: Shared ESLint configurations.
+  - `typescript-config`: Shared TypeScript configurations.
 
-- [Node.js](https://nodejs.org/) (v20 or higher recommended)
-- [pnpm](https://pnpm.io/) (Package Manager)
-- [Docker](https://www.docker.com/) & Docker Compose (For the database)
+## 🛠️ Pré-requisitos
 
-## Steps to Start
+- **Node.js**: Version 18 or higher.
+- **PNPM**: Version 9+ (Required package manager).
+- **Docker**: To run the database and services.
+- **Windows (Opcional)**: Enable "Developer Mode" in Windows settings to allow the creation of symbolic links during the build.
 
-### 1. Clone and Install Dependencies
+## ⚙️ Initial Setup
 
-On the root, run:
+1. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
+2. **Set up Environment Variables:**
+
+   This project uses two .env files to avoid network conflicts between Docker and Localhost.
+   - At the Root (`/.env`): Used by Docker Compose.
+     ```bash
+     POSTGRES_USER=admin
+     POSTGRES_PASSWORD=password
+     POSTGRES_DB=braners_carners_db
+     POSTGRES_HOST=postgres       # Service name in Docker
+     POSTGRES_PORT=5432           # Internal container port
+     ```
+   - In the API (`apps/api/.env`): Used for local development (Migrations/Run Dev).
+     ```bash
+     POSTGRES_USER=admin
+     POSTGRES_PASSWORD=password
+     POSTGRES_DB=braners_carners_db
+     POSTGRES_HOST=localhost      # Accessible from your machine
+     POSTGRES_PORT=5434           # Port exposed in Docker Compose
+     ```
+   - In the Web (`apps/web/.env.local`): Used for communication with the API.
+     ```bash
+     NEXT_PUBLIC_API_URL=http://localhost:3001
+     ```
+
+# 🏃‍♂️ How to Run the Project
+
+## Option 1: Local Development
+
+In this mode, you run the database in Docker and the applications (Web/API) on your machine to get fast hot-reload.
+
+1. **Start only the Database:**
+   ```bash
+   docker-compose up -d postgres
+   ```
+2. **Run the Migrations (Create tables):**
+   ```bash
+   pnpm --filter api migration:run
+   ```
+3. **Start the applications:**
+   ```bash
+   pnpm run dev
+   ```
+
+   - **Web:** http://localhost:3000
+   - **API:** http://localhost:3001
+   - **Database:** localhost:5434
+
+## Option 2: Full Infrastructure (Docker)
+
+To simulate the production environment running everything in containers.
+
 ```bash
-# Install all dependencies of the monorepo
-pnpm install
+docker-compose up --build
 ```
 
-### 2. Set Environment Variables
+# 📦 Useful Scripts
 
-#### Backend (API)
+- `pnpm run dev` - Starts all applications in development mode.
+- `pnpm run build` - Builds all applications and packages.
+- `pnpm run lint` - Runs code linting (ESLint) across the entire monorepo.
+- `pnpm run format` - Formats all code with Prettier.
+- `pnpm run check-types` - Checks TypeScript errors without compiling.
+- `pnpm --filter api migration:generate` - Generates a new migration based on entity changes.
+- `pnpm --filter api migration:run` - Runs pending migrations in the database.
+- `pnpm --filter api migration:revert` - Reverts the last migration.
+- `pnpm --filter api migration:reset` - Reverts all migrations.
 
-Create a .env file inside the apps/api/ folder. You can use the example below (adjust according to your docker-compose.yml if needed):
-```bash
-# apps/api/.env
-PORT=3001
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=postgres
-DB_DATABASE=branerscarners
-```
+# ❗ Common Troubleshooting
 
-#### Frontend (Web)
-Create a .env.local file inside the apps/web/ folder to configure communication with the API:
-```bash
-# apps/web/.env.local
-NEXT_PUBLIC_API_URL=http://localhost:3001
-```
+1. **Error:** `EPERM: operation not permitted, symlink` (Windows)
+   - **Description:** Occurs during the Next.js build.
+   - **Solution:** Enable Developer Mode in Windows (Settings > System > For Developers) or run the terminal as Administrator.
 
-### 3. Start the Database
-Use the Docker Compose that is in the root to start the PostgreSQL database:
-```bash
-docker-compose up -d
-```
+2. **Error:** `getaddrinfo ENOTFOUND postgres`
+   - **Description:** Occurs when running the API or migrations locally.
+   - **Solution:** Check if you created the `apps/api/.env` file with `POSTGRES_HOST=localhost`. The `postgres` host only works inside Docker.
 
-### 4. Run the Migrations
-With the database running, run the migrations to create the necessary tables:
-```bash
-# Run the migration script defined in the package.json of the API
-pnpm --filter api migration:run
-```
+3. **Error:** EADDRINUSE :::3000
+   - **Description:** The port is already in use.
+   - **Solution:** Check if there are old containers running (`docker-compose down`) or other open Node processes.
 
-### 5. Run the Seed (Seed Inicial)
-As the database starts empty, you need to run the seed to create the initial units. With the API running (see the next step), make a POST request:# Via cURL (or use Postman/Insomnia):
-```bash
-# apps/api/.env.local
-curl -X POST http://localhost:3001/seed-units
-```
-This will create the example data (Mooca, Vila Mariana, etc.) that will appear on the home page.
+# 🤝 Contribution
 
-### 6. Run the Project
-To start both the frontend and backend in development mode:
-```bash
-# On the root
-pnpm dev
-```
-- Web: http://localhost:3000
-- API: http://localhost:3001
+1. Ensure the code is formatted: `pnpm run format`
 
-## Useful Commands
-- pnpm build: Compiles all apps and packages.
-- pnpm lint: Runs the linting in all apps and packages.
-- pnpm --filter api <command>: Runs a command only in the API scope.
-- pnpm --filter web <command>: Runs a command only in the Web scope.
+2. Check for lint errors: `pnpm run lint`
+
+3. Commits must follow the Conventional Commits pattern **(e.g., feat: add new button, fix: database connection)**. Husky will validate your message before committing.
