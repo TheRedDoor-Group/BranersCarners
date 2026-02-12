@@ -1,20 +1,33 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, ButtonHTMLAttributes, forwardRef } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import styles from "./Button.module.scss";
 
-interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  variant?: "primary" | "secondary" | "ghost";
+  asChild?: boolean;
   className?: string;
-  appName: string;
 }
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
-  return (
-    <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
-    >
-      {children}
-    </button>
-  );
-};
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { children, className, variant = "primary", asChild = false, ...props },
+    ref,
+  ) => {
+    const Comp = asChild ? Slot : "button";
+
+    const finalClass = [styles.btn, styles[`btn-${variant}`], className]
+      .filter(Boolean)
+      .join(" ");
+
+    return (
+      <Comp className={finalClass} ref={ref} {...props}>
+        {children}
+      </Comp>
+    );
+  },
+);
+
+Button.displayName = "Button";
