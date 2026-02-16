@@ -8,8 +8,8 @@
     "start": "node dist/server.js",
     "check-types": "tsc --noEmit",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:generate": "pnpm typeorm migration:generate -d src/config/data-source.ts",
-    "migration:run": "pnpm typeorm migration:run -d src/config/data-source.ts"
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/data-source.ts",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/data-source.ts"
   },
   "dependencies": {
     "cors": "^2.8.6",
