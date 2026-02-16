@@ -2,8 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Reservation } from "./reservation";
 
 @Entity("units")
 export class Unit {
@@ -24,6 +26,9 @@ export class Unit {
 
   @Column({ type: "jsonb", nullable: true, name: "opening_hours" })
   openingHours: object;
+
+  @OneToMany(() => Reservation, (reservation) => reservation.unit)
+  reservations: Reservation[];
 
   @Column({ nullable: true, name: "gmaps_link" })
   gmapsLink: string; // Ex: https://goo.gl/maps/xxxx
