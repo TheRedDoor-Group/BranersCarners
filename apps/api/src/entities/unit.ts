@@ -1,31 +1,39 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity("units")
 export class Unit {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    slug: string; // Ex: unit-mooca
+  @Column()
+  slug: string; // Ex: unit-mooca
 
-    @Column()
-    address: string;
+  @Column()
+  address: string;
 
-    @Column({ nullable: true })
-    phone: string;
+  @Column({ nullable: true })
+  phone: string;
 
-    @Column({ nullable: true, name: "gmaps_link" })
-    gmapsLink: string; // Ex: https://goo.gl/maps/xxxx
+  @Column({ type: "jsonb", nullable: true, name: "opening_hours" })
+  openingHours: object;
 
-    @Column({ nullable: true, name: "whatsapp_link" })
-    whatsappLink: string; // Ex: https://api.whatsapp.com/send?phone=5511999999999
+  @Column({ nullable: true, name: "gmaps_link" })
+  gmapsLink: string; // Ex: https://goo.gl/maps/xxxx
 
-    @CreateDateColumn({ name: "created_at" })
-    createdAt: Date;
+  @Column({ nullable: true, name: "whatsapp_link" })
+  whatsappLink: string; // Ex: https://api.whatsapp.com/send?phone=5511999999999
 
-    @CreateDateColumn({ name: "updated_at" })
-    updatedAt: Date;
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
+
+  @CreateDateColumn({ name: "updated_at" })
+  updatedAt: Date;
 }
