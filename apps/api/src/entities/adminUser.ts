@@ -2,14 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Product } from "./product";
 
-@Entity("categories")
-export class Category {
+@Entity("admin_users")
+export class AdminUser {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -17,14 +15,14 @@ export class Category {
   name: string;
 
   @Column({ unique: true })
-  slug: string;
+  email: string;
 
-  @OneToMany(() => Product, (product) => product.category)
-  products: Product[];
+  @Column({ select: false })
+  password: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 }
