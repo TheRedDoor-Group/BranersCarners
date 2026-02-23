@@ -71,28 +71,34 @@ const seed = async () => {
           name: "Tomahawk Angus",
           description: "Corte nobre com o osso da costela.",
           price: 249.9,
-          image_url: "/uploads/tomahawk.jpg",
+          imageUrl: "/steaks/tomahawk.jpg",
           category: carnesCategory,
-          active: true,
+          isActive: true,
         },
         {
           name: "Picanha Wagyu",
           description: "A rainha do churrasco, marmoreio nível 8.",
           price: 399.0,
-          image_url: "/uploads/picanha.jpg",
+          imageUrl: "/steaks/picanha.jpg",
           category: carnesCategory,
-          active: true,
+          isActive: true,
         },
         {
           name: "Farofa de Ovos",
           description: "Farofa crocante na manteiga de garrafa.",
           price: 29.9,
-          image_url: "/uploads/farofa.jpg",
+          imageUrl: "/steaks/farofa.jpg",
           category: acompCategory,
-          active: true,
+          isActive: true,
         },
       ]);
       console.log("Produtos criados.");
+    } else if (existingProd && !existingProd.imageUrl) {
+      await productRepo.clear();
+      console.log(
+        "Produtos antigos com erro foram limpos. Por favor, corra o seed novamente.",
+      );
+      return;
     }
 
     // Admin

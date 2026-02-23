@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || "braners_carners_db",
   synchronize: false,
   logging: false,
-  entities: ["src/entities/*.ts"],
-  migrations: ["src/database/migrations/*.ts"],
+  entities: [__dirname + "/../entities/*.{js,ts}"],
+  migrations: [__dirname + "/../database/migrations/*.{js,ts}"],
   subscribers: [],
 });
