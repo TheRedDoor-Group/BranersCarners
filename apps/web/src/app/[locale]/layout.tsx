@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 // Lenis Scroll
-import LenisScrollProvider from "./providers/lenis-provider";
+import LenisScrollProvider from "../../components/core/lenis-provider";
 // Main Style
 import "../../styles/main.scss";
 // SEO
