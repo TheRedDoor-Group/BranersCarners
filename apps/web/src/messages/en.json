@@ -1,12 +1,16 @@
 {
+  "Header": {
+    "Navigation": {
+      "menu": "Menu",
+      "about": "About Us",
+      "units": "Locations"
+    },
+    "reserve": "Reserve",
+    "change": "Change to: "
+  },
   "HomePage": {
     "title": "Braners Carners",
     "subtitle": "Tradition and flavor in Mooca and Tatuapé",
     "cta": "Book a Table"
-  },
-  "Navigation": {
-    "menu": "Menu",
-    "about": "About Us",
-    "units": "Locations"
   }
 }

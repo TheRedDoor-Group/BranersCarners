@@ -7,6 +7,7 @@ import LenisScrollProvider from "../../components/core/lenis-provider";
 import "../../styles/main.scss";
 // SEO
 import "../../lib/seo";
+import Navbar from "../../components/layout/navbar/page";
 
 export default async function RootLayout({
   children,
@@ -29,7 +30,10 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <LenisScrollProvider>{children}</LenisScrollProvider>
+          <LenisScrollProvider>
+            <Navbar />
+            {children}
+          </LenisScrollProvider>
         </NextIntlClientProvider>
       </body>
     </html>
