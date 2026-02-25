@@ -12,5 +12,10 @@
     "title": "Braners Carners",
     "subtitle": "Tradition and flavor in Mooca and Tatuapé",
     "cta": "Book a Table"
+  },
+  "Footer": {
+    "cookies": "Cookies Policy",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
   }
 }

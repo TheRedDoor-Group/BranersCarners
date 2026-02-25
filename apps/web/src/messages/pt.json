@@ -12,5 +12,10 @@
     "title": "Braners Carners",
     "subtitle": "Tradição e sabor na Mooca e Tatuapé",
     "cta": "Reservar Mesa"
+  },
+  "Footer": {
+    "cookies": "Política de Cookies",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Uso"
   }
 }

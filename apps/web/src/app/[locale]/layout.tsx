@@ -7,7 +7,9 @@ import LenisScrollProvider from "../../components/core/lenis-provider";
 import "../../styles/main.scss";
 // SEO
 import "../../lib/seo";
+// Components
 import Navbar from "../../components/layout/navbar/page";
+import Footer from "../../components/layout/footer/page";
 
 export default async function RootLayout({
   children,
@@ -33,6 +35,7 @@ export default async function RootLayout({
           <LenisScrollProvider>
             <Navbar />
             {children}
+            <Footer />
           </LenisScrollProvider>
         </NextIntlClientProvider>
       </body>
