@@ -47,7 +47,15 @@ export default function HeroSection() {
         </h1>
       </div>
       <div className="hero__credit">
-        <p>video by: @rico_erick</p>
+        <a
+          href="https://www.youtube.com/watch?v=bHRKRSJDjNY"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero__credit-link"
+        >
+          <span className="text">@rico_erick</span>
+          <span className="icon">▶</span>
+        </a>
       </div>
     </section>
   );

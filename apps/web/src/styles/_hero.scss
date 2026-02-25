@@ -58,10 +58,54 @@
         text-align: right;
         z-index: 3;
 
-        p {
+        &-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: $white-color;
             font-family: $moon-dance-font;
             color: $bg-gray-light;
             margin: 0;
+            text-decoration: none;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            transform-origin: bottom center;
+            transition: background 0.3s ease, color 0.3s ease;
+
+            .icon {
+                font-size: 0.8rem;
+                color: #ff0000;
+                opacity: 0;
+                width: 0;
+                transform: scale(0) rotate(-180deg);
+                transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+
+            &:hover {
+                background: $white-color;
+                color: #000;
+                // Call the animation
+                animation: riveJump 0.65s cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+
+                .icon {
+                    opacity: 1;
+                    width: 14px;
+                    margin-left: 6px;
+                    transform: scale(1) rotate(0);
+                }
+            }
         }
     }
+}
+
+// Rive like animation
+@keyframes riveJump {
+    0% { transform: scale(1) translateY(0); }
+    15% { transform: scale(1.15, 0.85) translateY(4px); }
+    45% { transform: scale(0.85, 1.15) translateY(-14px); }
+    65% { transform: scale(1.08, 0.92) translateY(2px); }
+    85% { transform: scale(0.96, 1.04) translateY(-3px); }
+    100% { transform: scale(1) translateY(0); }
 }
