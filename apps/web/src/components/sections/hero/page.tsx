@@ -1,8 +1,22 @@
+"use client";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 
 export default function HeroSection() {
+  const heroRef = useRef(null);
+
+  // Fade In animation
+  useLayoutEffect(() => {
+    gsap.fromTo(
+      heroRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 1.2, ease: "power2.out" },
+    );
+  }, []);
+
   return (
-    <section className="hero">
+    <section ref={heroRef} className="hero">
       <div className="hero__video-wrapper">
         <video
           className="hero__video"
