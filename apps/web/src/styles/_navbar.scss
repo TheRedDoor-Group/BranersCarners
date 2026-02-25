@@ -29,7 +29,11 @@
     top: 0;
     left: 0;
     background-color: transparent;
-    padding: 40px 60px;
+    padding: 20px; // Reduzido de 40px 60px para mobile
+
+    @media (min-width: 768px) {
+      padding: 40px 60px;
+    }
 
     .navbar__container {
       max-width: none;
@@ -38,12 +42,18 @@
 
   &__internal {
     background-color: #000000;
-    margin: 15px auto;
-    width: calc(100% - 40px);
+    margin: 10px auto; // Ajustado de 15px
+    width: calc(100% - 20px);
     max-width: 1400px;
     padding: 10px 20px;
     border-radius: 10px;
     @include noise-background(0.08);
+
+    @media (min-width: 768px) {
+      margin: 15px auto;
+      width: calc(100% - 40px);
+      padding: 10px 20px;
+    }
   }
 
   &__container {
@@ -51,14 +61,48 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 1rem;
+    position: relative;
+  }
+
+  &__mobile-toggle {
+    display: block; // Visível no mobile
+    background: none;
+    border: none;
+    color: $primary-color;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 101;
+
+    @media (min-width: 1024px) {
+      display: none; // Esconde no desktop
+    }
   }
 
   &__left {
-    display: flex;
+    display: none;
     justify-content: space-around;
     width: 100%;
     align-items: center;
     gap: 2.5rem;
+
+    &--visible {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      padding: 20px;
+      gap: 1.5rem;
+      border-bottom: 1px solid $primary-color;
+    }
+
+    @media (min-width: 1024px) {
+      display: flex;
+      gap: 2.5rem;
+    }
   }
 
   &__link, &__page-title {
@@ -69,9 +113,13 @@
   }
 
   &__link {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
     transition: opacity 0.3s;
+
+    @media (min-width: 1024px) {
+      font-size: 1.1rem;
+    }
 
     &:hover {
       opacity: 0.8;
@@ -86,6 +134,11 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    margin-left: auto;
+
+    @media (min-width: 768px) {
+      gap: 2rem;
+    }
   }
 
   &__lang {
@@ -106,7 +159,8 @@
     background-color: $accent-color;
     color: #fff;
     text-decoration: none;
-    padding: 12px 35px;
+    padding: 8px 15px;
+    font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Arial', sans-serif;
@@ -114,6 +168,11 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+
+    @media (min-width: 768px) {
+      padding: 12px 35px;
+      font-size: 1rem;
+    }
 
     &:hover {
       background-color: #a01a1a;
