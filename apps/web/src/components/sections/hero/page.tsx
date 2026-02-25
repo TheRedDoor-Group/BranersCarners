@@ -1,0 +1,40 @@
+import Image from "next/image";
+
+export default function HeroSection() {
+  return (
+    <section className="hero">
+      <div className="hero__video-wrapper">
+        <video
+          className="hero__video"
+          preload="metadata"
+          poster="/thumb-hero-video.png"
+          playsInline
+          autoPlay
+          loop
+          muted
+        >
+          <source src="/hero_video_by_rico_erick.mp4" type="video/mp4" />
+          <source src="/hero_video_by_rico_erick.mov" type="video/quicktime" />
+          <source src="/hero_video_by_rico_erick_wav" type="video/wav" />
+          <source src="/hero_video_by_rico_erick_webm" type="video/webm" />
+          Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div className="hero__overlay"></div>
+      </div>
+
+      <div className="hero__content">
+        <h1 className="hero__logo">
+          <Image
+            src="/brand/logo-transparent.svg"
+            alt="Logo"
+            width={200}
+            height={200}
+          />
+        </h1>
+      </div>
+      <div className="hero__credit">
+        <p>video by: @rico_erick</p>
+      </div>
+    </section>
+  );
+}

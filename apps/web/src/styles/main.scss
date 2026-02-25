@@ -1,0 +1,60 @@
+@use 'variables' as *;
+@use 'hero';
+
+/* ==========================================================================
+   DEFAULT PRESET
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: $lateef-font;
+    background-color: $bg-dark;
+    color: $white-color;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.theme-light {
+    background-color: $bg-light;
+    color: $bg-dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $lateef-font;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: $spacing-md;
+    letter-spacing: 2px;
+}
+
+p {
+    margin-bottom: $spacing-sm;
+}
+
+section{
+    margin-bottom: $spacing-xl;
+}
+
+article {
+    margin-bottom: $spacing-lg;
+}
+
+.title-primary {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: $white-color;
+
+    &.text-accent {
+        color: $primary-color;
+    }
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
