@@ -29,7 +29,7 @@
     top: 0;
     left: 0;
     background-color: transparent;
-    padding: 20px; // Reduzido de 40px 60px para mobile
+    padding: 20px;
 
     @media (min-width: 768px) {
       padding: 40px 60px;
@@ -42,7 +42,7 @@
 
   &__internal {
     background-color: #000000;
-    margin: 10px auto; // Ajustado de 15px
+    margin: 10px auto;
     width: calc(100% - 20px);
     max-width: 1400px;
     padding: 10px 20px;
@@ -66,7 +66,7 @@
   }
 
   &__mobile-toggle {
-    display: block; // Visível no mobile
+    display: block;
     background: none;
     border: none;
     color: $primary-color;
@@ -75,7 +75,7 @@
     z-index: 101;
 
     @media (min-width: 1024px) {
-      display: none; // Esconde no desktop
+      display: none;
     }
   }
 
@@ -122,7 +122,7 @@
     }
 
     &:hover {
-      opacity: 0.8;
+      color: $primary-color-hover;
     }
   }
 
@@ -151,11 +151,11 @@
     transition: opacity 0.3s;
     
     &:hover {
-      opacity: 0.8;
+      color: $primary-color-hover;
     }
   }
 
-  &__btn-reservar {
+  &__btn-reserve {
     background-color: $accent-color;
     color: #fff;
     text-decoration: none;
@@ -169,13 +169,21 @@
     cursor: pointer;
     transition: background-color 0.3s;
 
+    // Grunge Texture Effect
+    -webkit-mask-image: url('../../public/texture-btn.png');
+    mask-image: url('../../public/texture-btn.png');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    transition: transform 0.2s, background-color 0.2s;
+
     @media (min-width: 768px) {
       padding: 12px 35px;
       font-size: 1rem;
     }
 
     &:hover {
-      background-color: #a01a1a;
+      background-color: $accent-color-hover;
     }
   }
 }

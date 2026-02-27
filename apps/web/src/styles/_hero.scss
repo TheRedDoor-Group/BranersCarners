@@ -52,11 +52,11 @@
         font-weight: bold;
 
         img {
-            max-width: 150px; // Menor no mobile
+            max-width: 150px;
             height: auto;
 
             @media (min-width: 768px) {
-                max-width: 200px; // Tamanho original no desktop
+                max-width: 200px;
             }
         }
     }

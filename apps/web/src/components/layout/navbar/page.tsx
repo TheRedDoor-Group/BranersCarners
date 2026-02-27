@@ -61,7 +61,7 @@ export default function Navbar() {
           >
             <span>{locale === "pt" ? "EN" : "PT"}</span>
           </button>
-          <Link href="#reservar" className="navbar__btn-reservar">
+          <Link href="#reservar" className="navbar__btn-reserve">
             {tHeader("reserve")}
           </Link>
         </div>

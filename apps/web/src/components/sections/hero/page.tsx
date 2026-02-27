@@ -52,6 +52,8 @@ export default function HeroSection() {
           target="_blank"
           rel="noopener noreferrer"
           className="hero__credit-link"
+          aria-label="Video creator"
+          title="Video creator"
         >
           <span className="text">@rico_erick</span>
           <span className="icon">▶</span>
