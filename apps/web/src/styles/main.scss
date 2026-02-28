@@ -1,6 +1,7 @@
 @use 'variables' as *;
 @use 'navbar';
 @use 'hero';
+@use 'aboutus';
 @use 'footer';
 
 /* ==========================================================================
@@ -36,15 +37,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-    margin-bottom: $spacing-sm;
+    padding-bottom: $spacing-sm;
 }
 
 section{
-    margin-bottom: $spacing-xl;
+    padding-bottom: $spacing-xl;
 }
 
 article {
-    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-lg;
 }
 
 .title-primary {

@@ -13,9 +13,15 @@
     "subtitle": "Tradição e sabor na Mooca e Tatuapé",
     "cta": "Reservar Mesa"
   },
+  "About": {
+    "title": "HÁ MAIS DE 15 ANOS TRAZENDO QUALIDADE E CULTURA BOVINA PARA A ZONA LESTE DE SÃO PAULO",
+    "subtitle": "TRADIÇÃO QUE VEM DO CAMPO. SABOR QUE FICA NA HISTÓRIA",
+    "alt": "Owners"
+  },
   "Footer": {
     "cookies": "Política de Cookies",
     "privacy": "Política de Privacidade",
-    "terms": "Termos de Uso"
+    "terms": "Termos de Uso",
+    "owners": "Proprietários"
   }
 }

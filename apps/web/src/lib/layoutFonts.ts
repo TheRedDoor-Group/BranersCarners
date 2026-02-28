@@ -10,6 +10,7 @@ const lato = Lato({
   display: "swap",
   weight: ["400", "700"],
   preload: true,
+  variable: "--font-lato",
 });
 
 const lateef = Lateef({
@@ -17,13 +18,14 @@ const lateef = Lateef({
   display: "swap",
   weight: ["300", "400", "500", "700"],
   preload: true,
+  variable: "--font-lateef",
 });
 
 const loveYa = Love_Ya_Like_A_Sister({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400"],
-  preload: true,
+  weight: "400",
+  variable: "--font-love-ya",
 });
 
 const moonDance = Moon_Dance({
@@ -31,6 +33,7 @@ const moonDance = Moon_Dance({
   display: "swap",
   weight: ["400"],
   preload: true,
+  variable: "--font-moon-dance",
 });
 
 export { lato, lateef, loveYa, moonDance };

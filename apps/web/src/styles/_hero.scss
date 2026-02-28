@@ -40,23 +40,26 @@
         position: relative;
         z-index: 2;
         text-align: center;
-        width: 100%;
-        max-width: 800px;
-        padding: 0 20px;
+        justify-items: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
     }
 
     &__logo {
         font-size: clamp(2.5rem, 8vw, 5rem);
+        display: flex;
+        align-items: center;
         margin-bottom: 1rem;
         text-transform: uppercase;
         font-weight: bold;
 
         img {
-            max-width: 150px;
+            max-width: 200px;
             height: auto;
 
             @media (min-width: 768px) {
-                max-width: 200px;
+                max-width: 170px;
             }
         }
     }
@@ -79,7 +82,7 @@
             align-items: center;
             color: $white-color;
             font-family: $moon-dance-font;
-            font-size: 0.8rem;
+            font-size: clamp(1.3rem, 2vw, 1rem);
             color: $bg-gray-light;
             margin: 0;
             text-decoration: none;
@@ -92,11 +95,10 @@
 
             @media (min-width: 768px) {
                 padding: 4px 12px;
-                font-size: 1rem;
             }
 
             .icon {
-                font-size: 0.8rem;
+                font-size: clamp(0.8rem, 2vw, 1rem);
                 color: #ff0000;
                 opacity: 0;
                 width: 0;

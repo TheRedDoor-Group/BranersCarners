@@ -1,0 +1,121 @@
+@use 'variables' as *;
+
+.aboutus {
+    background-color: $bg-dark;
+    background-repeat: repeat;
+    color: $white-color;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    
+    // Smooth transition background image
+    transition: background-image 0.1s linear;
+
+    &__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+
+        h2, p {
+            font-family: 'Love Ya Like a Sister', cursive;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .aboutus__title {
+            font-size: clamp(1.6rem, 5vw, 4rem);
+            max-width: 800px;
+            margin-bottom: -25px;
+
+            @media (max-width: 768px) {
+                margin-bottom: -10px;   
+            }
+        }
+
+        .aboutus__subtitle {
+            font-size: clamp(1.6rem, 5vw, 3.8rem);
+            text-transform: none;
+            max-width: 700px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+
+            @media (max-width: 768px) {
+                margin-top: -10px;   
+            }
+        }
+    }
+
+    &__figure {
+        position: relative;
+        z-index: 1;
+        
+        img {
+            display: block;
+            border-radius: 4px;
+    
+            @media (max-width: 768px) {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
+
+.aboutus__figure {
+    position: relative;
+    display: inline-block;
+
+    .annotation {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        pointer-events: none;
+
+        &__name {
+            font-family: $love-ya-like-a-sister-font;
+            font-size: 1.1rem;
+            color: rgba($white-color, 0.8);
+            white-space: nowrap;
+            margin-bottom: 6px;
+        }
+
+        &__arrow {
+            width: 180px;
+            height: auto;
+            overflow: visible;
+        }
+
+        &--left {
+            top: 30%;
+            left: -170px;
+            align-items: flex-end;
+
+            .annotation__name {
+                position: relative;
+                left: -80px;
+            }
+        }
+
+        &--right {
+            bottom: 40%;
+            right: -160px;
+            align-items: flex-start;
+
+            .annotation__name {
+                position: relative;
+                right: -80px;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .annotation {
+        display: none;
+    }
+}

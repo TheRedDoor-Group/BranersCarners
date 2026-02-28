@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { lateef, loveYa, lato, moonDance } from "../../lib/layoutFonts";
 // Lenis Scroll
 import LenisScrollProvider from "../../components/core/lenis-provider";
 // Main Style
@@ -29,7 +30,10 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html
+      lang={locale}
+      className={`${loveYa.variable} ${lateef.variable} ${lato.variable} ${moonDance.variable}`}
+    >
       <body>
         <NextIntlClientProvider messages={messages}>
           <LenisScrollProvider>
