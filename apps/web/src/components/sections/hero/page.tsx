@@ -1,19 +1,12 @@
 "use client";
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useFireCurtainAnimation } from "../../../hooks/useFireCurtainAnimation";
 export default function HeroSection() {
   const heroRef = useRef(null);
-
-  // Fade In animation
-  useLayoutEffect(() => {
-    gsap.fromTo(
-      heroRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.2, ease: "power2.out" },
-    );
-  }, []);
+  const fireCurtainRef = useRef(null);
+  useFireCurtainAnimation({ heroRef, fireCurtainRef });
 
   return (
     <section ref={heroRef} className="hero">
@@ -58,6 +51,16 @@ export default function HeroSection() {
           <span className="text">@rico_erick</span>
           <span className="icon">▶</span>
         </a>
+      </div>
+      <div ref={fireCurtainRef} className="fire-curtain">
+        <div className="lottie-wrapper">
+          <DotLottieReact
+            src="https://lottie.host/5e092aba-daa7-4a92-b192-9a2421b84fb5/zrSb8XVQPN.lottie"
+            autoplay
+            loop
+            className="lottie-player"
+          />
+        </div>
       </div>
     </section>
   );

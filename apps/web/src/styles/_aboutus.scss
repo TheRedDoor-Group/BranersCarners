@@ -6,7 +6,8 @@
     color: $white-color;
     padding: 60px 20px;
     text-align: center;
-    position: relative;
+    position: relative; 
+    z-index: 10000;
     
     // Smooth transition background image
     transition: background-image 0.1s linear;
