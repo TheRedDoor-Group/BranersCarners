@@ -16,7 +16,7 @@ export default function AboutUsSection() {
 
   useArrowAnimation(containerRef, pathLeftRef, pathRightRef);
   return (
-    <article ref={containerRef} className="aboutus">
+    <section ref={containerRef} className="aboutus">
       <div className="aboutus__container">
         <h2 className="aboutus__title">{tAbout("title")}</h2>
         <figure className="aboutus__figure">
@@ -64,6 +64,6 @@ export default function AboutUsSection() {
         </figure>
         <p className="aboutus__subtitle">{tAbout("subtitle")}</p>
       </div>
-    </article>
+    </section>
   );
 }
